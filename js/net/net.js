@@ -27,7 +27,7 @@ function netMsg(m){if(!net.on&&m.t!='lobbies'&&m.t!='welcome'&&m.t!='err'&&m.t!=
  case 'mod':LB.bans=(Array.isArray(m.bans)?m.bans:[]).slice(0,100).map(b=>({pid:/^[a-f0-9]{12}$/.test(b.pid)?b.pid:'',name:cleanPN(b.name)})).filter(b=>b.pid);LB.reports=(Array.isArray(m.reports)?m.reports:[]).slice(-50).map(reportClean);ovKey='';break;
   case 'snap':vs=m.s;(m.s.sp||[]).forEach(([i,n,g])=>regSp(i,n,g));m.s.ev.forEach(fx);break;
   case 'in':
-    if(isHost&&m.i){const p=P[m.id|0];if(p){const i=m.i;p.inp.dx=i.dx;p.inp.dz=i.dz;p.inp.ax=i.ax;p.inp.az=i.az;p.inp.f=i.f|0;p.inp.ds=i.ds?1:0;p.inp.sw=i.sw?1:0;p.inp.rl=i.rl|0;p.inp.ex=i.ex|0;p.inp.ab=i.ab|0}}
+    if(isHost&&m.i){const p=P[m.id|0];if(p){const i=m.i;p.inp.dx=Math.max(-1,Math.min(1,i.dx||0));p.inp.dz=Math.max(-1,Math.min(1,i.dz||0));p.inp.ax=i.ax;p.inp.az=i.az;p.inp.f=i.f|0;p.inp.ds=i.ds?1:0;p.inp.sw=i.sw?1:0;p.inp.rl=i.rl|0;p.inp.ex=i.ex|0;p.inp.ab=i.ab|0}}
     break;
  case 'end':netDown('Hostitel lobby zavřel.');break;
  case 'err':menuMsg=ERRT[m.code]||'Chyba serveru.';ovKey='';break}}
