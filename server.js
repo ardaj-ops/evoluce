@@ -79,4 +79,4 @@ wss.on('connection',(ws,req)=>{ws.alive=true;ws.p={name:'Hráč',color:0};ws.t0=
   setInterval(()=>{const n=Date.now();failIp.forEach((v,k)=>{if(n-v.t>60000)failIp.delete(k)})},60000).unref();
   const flushAll=()=>{mod.flush();db.flush()};process.on('SIGINT',()=>{flushAll();process.exit(0)});process.on('SIGTERM',()=>{flushAll();process.exit(0)});
   if(require.main===module)srv.listen(process.env.PORT||3000,()=>console.log('Evoluce běží na http://localhost:'+(process.env.PORT||3000)));
-  module.exports={srv,wss,rooms,mod,db,close:()=>{flushAll();wss.clients.forEach(w=>w.terminate());srv.close()}};
+  module.exports={srv,wss,rooms,mod,db,close:()=>{flushAll();wss.clients.forEach(w=>w.terminate());srv.close()}};})
