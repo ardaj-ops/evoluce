@@ -8,7 +8,6 @@ function tone(f,d,type,v,f2,pan){const a=actx();if(!a)return;const t=a.currentTi
  g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);o.start(t);o.stop(t+d)}
 function noise(d,ft,f1,f2,v,pan){const a=actx();if(!a)return;const t=a.currentTime,s=a.createBufferSource(),f=a.createBiquadFilter(),g=aout(v,pan);s.buffer=nbuf;f.type=ft;f.frequency.setValueAtTime(f1,t);if(f2)f.frequency.exponentialRampToValueAtTime(f2,t+d);
  g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+d);s.connect(f);f.connect(g);s.start(t,Math.random()*.5,d)}
-const beep=(f,d,type,v,f2)=>tone(f,d,type,v,f2,0);
 // panorama a hlasitost podle vzdálenosti od mé postavy
 function spat(x,z){const m=vs&&vs.p&&vs.p.find(a=>a[0]==me);if(!m)return{p:0,v:1};const dx=x-m[1],d=hyp(dx,z-m[2]),rel=typeof FP!='undefined'?dx*(-Math.cos(FP.yaw))+(z-m[2])*Math.sin(FP.yaw):dx;return{p:cl(rel/25,-1,1),v:cl(1.2-d/45,.15,1)}}
 const MINT={abn:.08,abr:.06,abb:.06,abh:.1,abu:.3,rl:.1,rlend:.1,dry:.12,xe:.5,xk:.5,w9:.05,w2:.045,w4:.07,kill:.03,hurt:.1,boom:.08};

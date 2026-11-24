@@ -40,3 +40,9 @@
 @keyframes ulp{from{box-shadow:0 0 10px #ffd27a88}to{box-shadow:0 0 26px #ffd27a}}
 #ammo{bottom:112px}
 .card .abi{display:block;margin-top:4px;font-size:15px;letter-spacing:4px}.card .abi i{font-style:normal}
+
+/* ---- animace HUD: plynulé ubývání životů, „nabití“ banneru vlny ---- */
+#hpf{transition:width .2s ease-out}#bbf{transition:width .25s ease-out}
+@keyframes bnPop{0%{transform:translateX(-50%) scale(.6);letter-spacing:.3em}60%{transform:translateX(-50%) scale(1.08)}100%{transform:translateX(-50%) scale(1);letter-spacing:normal}}
+#bn.pop{animation:bnPop .5s cubic-bezier(.2,.9,.3,1.2)}
+@media (prefers-reduced-motion:reduce){#bn.pop{animation:none}}

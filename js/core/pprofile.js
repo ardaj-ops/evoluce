@@ -10,7 +10,6 @@ function ppSync(){const p=PP[PPS.act];p.cls=opt.cls;p.wp=opt.wp;savePP()}
 ppApply();
 const ppInfo=()=>({name:PP[PPS.act].name,color:PP[PPS.act].color});
 function ppSelf(p){const i=ppInfo();p.name=i.name;p.col=i.color}
-function ppOther(p,info){if(!p)return;const i=cleanPP(info);p.name=i.name;const used=Object.values(P).filter(q=>q!==p).map(q=>q.col);let c=i.color;for(let k=0;k<8&&used.includes(c);k++)c=(c+1)%8;p.col=c}
 function ppSwitch(i){ppSync();PPS.act=i;ppApply();savePP();ovKey=''}
 function ppNew(){if(PP.length>=6)return;const p=cleanPP(PP[PPS.act]);p.name='Hráč '+(PP.length+1);PP.push(p);ppSwitch(PP.length-1)}
 function ppRename(){const n=prompt('Jméno hráče:',PP[PPS.act].name);if(n===null)return;PP[PPS.act].name=cleanPN(n);savePP();ovKey=''}
